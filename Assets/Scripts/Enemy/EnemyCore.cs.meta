@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: fc761a903481f9f4a99eabe957b96ef5
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - hurtImpact: {instanceID: 0}
+  - spriteAnim: {instanceID: 0}
+  - player: {instanceID: 0}
+  - target: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - aggroSound: {instanceID: 0}
+  - meleeAttackSound: {instanceID: 0}
+  - rangedAttackSound: {instanceID: 0}
+  - dieSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
