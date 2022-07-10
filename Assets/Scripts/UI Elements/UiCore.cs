@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Endless.PlayerCore;
 using TMPro;
+using Endless.GunSwap;
 
 namespace Endless.InterfaceCore
 {
@@ -68,11 +69,7 @@ namespace Endless.InterfaceCore
                 armourBar.SetActive(true);
                 ArmourText.text = System.Math.Round(player.SetArmourBar(), 0) + " / 100";
             }
-<<<<<<< Updated upstream
-=======
-
             AmmoText.text = "Ammo: " + gc.CurrentAmmo.ToString() + " / " + gc.MaxAmmo.ToString();
->>>>>>> Stashed changes
         }
     }
 }
