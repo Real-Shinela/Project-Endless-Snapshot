@@ -89,8 +89,7 @@ namespace Endless.PlayerCore
                 Cursor.lockState = CursorLockMode.None;
                 Cursor.visible = true;
                 GameObject deathscr = GetComponent<PlayerController>().deathScreen;
-                deathscr = Instantiate(deathscr, transform.position + transform.forward * 2, transform.rotation);
-                deathscr.transform.position = new Vector3(deathscr.transform.position.x, deathscr.transform.position.y + 0.5f, deathscr.transform.position.z);
+                deathscr = Instantiate(deathscr, transform.position + transform.forward, transform.rotation);
             }
         }
 
