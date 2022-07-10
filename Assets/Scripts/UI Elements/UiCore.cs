@@ -24,6 +24,7 @@ namespace Endless.InterfaceCore
         [Header("Armour")]
         [SerializeField] GameObject armourBar;
         TextMeshProUGUI ArmourText;
+        [SerializeField] TextMeshProUGUI AmmoText;
         private GunCore gc;
 
         private void Start()
@@ -51,7 +52,15 @@ namespace Endless.InterfaceCore
                 ErrorText.text = errorText;
                 ErrorText.color = Color.red;
             }
-            gc = GameObject.Find("Player").GetComponent<WeaponSwapper>().gunsInInventory[GetComponent<WeaponSwapper>().weaponChoice].GetComponent<GunCore>();
+            Invoke(nameof(GetStuff), 0.5f);
+            AmmoText = Instantiate(AmmoText, transform);
+        }
+
+        private void GetStuff()
+        {
+            WeaponSwapper swapper = player.GetComponent<WeaponSwapper>();
+            gc = swapper.gunsInInventory[swapper.weaponChoice].GetComponent<GunCore>();
+            print(gc.name);
         }
 
         private void Update()
@@ -69,7 +78,8 @@ namespace Endless.InterfaceCore
                 armourBar.SetActive(true);
                 ArmourText.text = System.Math.Round(player.SetArmourBar(), 0) + " / 100";
             }
-            AmmoText.text = "Ammo: " + gc.CurrentAmmo.ToString() + " / " + gc.MaxAmmo.ToString();
+            try { AmmoText.text = "Ammo: " + gc.CurrentTotalAmmo.ToString() + " / " + gc.MaxAmmo.ToString(); }
+            catch { print("Weapon does not yet exist"); }
         }
     }
 }
