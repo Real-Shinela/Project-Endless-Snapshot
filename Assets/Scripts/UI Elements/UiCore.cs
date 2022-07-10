@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Endless.PlayerCore;
 using TMPro;
 using Endless.GunSwap;
@@ -18,13 +15,13 @@ namespace Endless.InterfaceCore
         [Header("Health")]
         [SerializeField] GameObject healthBar;
         TextMeshProUGUI HpText;
+        [SerializeField] TextMeshProUGUI AmmoText;
         [HideInInspector] private TextMeshProUGUI ErrorText;
         [HideInInspector] private string errorText = "Error: Something broke when creating the UI.\nPlease check the Canvas properties!";
 
         [Header("Armour")]
         [SerializeField] GameObject armourBar;
         TextMeshProUGUI ArmourText;
-        [SerializeField] TextMeshProUGUI AmmoText;
         private GunCore gc;
 
         private void Start()
@@ -39,11 +36,17 @@ namespace Endless.InterfaceCore
                 HpText.fontSize = fontSizeUI;
                 HpText.color = Color.white;
 
+
                 // Creating Armour bars
                 armourBar = Instantiate(armourBar, transform);
                 ArmourText = armourBar.GetComponentInChildren<TextMeshProUGUI>();
                 ArmourText.fontSize = fontSizeUI;
                 ArmourText.color = Color.blue;
+
+                // Ammo text
+                AmmoText = Instantiate(AmmoText, transform);
+                AmmoText.fontSize = fontSizeUI;
+                AmmoText.color = Color.gray;
             }
             catch
             {
@@ -53,14 +56,12 @@ namespace Endless.InterfaceCore
                 ErrorText.color = Color.red;
             }
             Invoke(nameof(GetStuff), 0.5f);
-            AmmoText = Instantiate(AmmoText, transform);
         }
 
         private void GetStuff()
         {
             WeaponSwapper swapper = player.GetComponent<WeaponSwapper>();
             gc = swapper.gunsInInventory[swapper.weaponChoice].GetComponent<GunCore>();
-            print(gc.name);
         }
 
         private void Update()
@@ -78,8 +79,9 @@ namespace Endless.InterfaceCore
                 armourBar.SetActive(true);
                 ArmourText.text = System.Math.Round(player.SetArmourBar(), 0) + " / 100";
             }
+
             try { AmmoText.text = "Ammo: " + gc.CurrentTotalAmmo.ToString() + " / " + gc.MaxAmmo.ToString(); }
-            catch { print("Weapon does not yet exist"); }
+            catch { Debug.Log("Gun not found yet"); }
         }
     }
 }

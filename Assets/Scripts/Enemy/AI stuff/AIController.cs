@@ -91,6 +91,10 @@ namespace Endless.Control
                 Physics.OverlapSphere(transform.position, core.meleeRange, allyMask);
 
             Collider[] rangeChecks = frontChecks.Concat(meleeChecks).ToArray();
+            foreach (Collider check in rangeChecks)
+            {
+                print(check);
+            }
 
             if (rangeChecks.Length != 0)
             {
